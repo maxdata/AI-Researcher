@@ -1,0 +1,21 @@
+{
+  "max_repositories": 5,
+  "max_papers": 10,
+  "min_stars": 10,
+  "min_relevance_score": 0.1,
+  "preferred_languages": ["Python"],
+  "exclude_archived": true,
+  "require_readme": true,
+  "max_repo_size_mb": 500,
+  "paper_filters": {
+    "min_year": 2020,
+    "preferred_venues": ["ICML", "NeurIPS", "ICLR", "AAAI", "IJCAI"],
+    "exclude_preprints": false
+  },
+  "download_options": {
+    "clone_depth": 1,
+    "include_git_history": false,
+    "download_papers_source": true,
+    "download_papers_pdf": true
+  }
+}

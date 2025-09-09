@@ -1,0 +1,46 @@
+name: idea_generation
+description: Generate research ideas through survey analysis or implement provided ideas
+version: 1.0.0
+dependencies: [03_repository_preparation]
+
+inputs:
+  - type: file
+    path: inputs/generation_config.json
+    description: Configuration for idea generation mode and parameters
+  - type: file
+    path: inputs/selected_papers.json
+    description: Selected papers from preparation step
+    source: "03_repository_preparation/outputs/selected_papers.json"
+  - type: file
+    path: inputs/user_idea.txt
+    description: User-provided research idea (for Level 1 mode)
+    required: false
+
+outputs:
+  - type: file
+    path: outputs/research_ideas.json
+    description: Generated or refined research ideas with technical details
+  - type: file
+    path: outputs/idea_survey.json
+    description: Comprehensive survey analysis of related work
+  - type: file
+    path: outputs/selected_idea.json
+    description: Final selected idea with implementation details
+
+environment:
+  python: "3.11"
+  packages:
+    - openai==1.12.0
+    - anthropic==0.18.1
+    - litellm==1.30.0
+
+resources:
+  cpu: 4
+  memory: 8Gi
+  timeout: 3600
+  api_calls: required
+
+metadata:
+  tags: ["ideation", "survey", "llm"]
+  complexity: high
+  estimated_duration: "45-60 minutes"

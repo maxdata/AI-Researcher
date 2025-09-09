@@ -1,0 +1,41 @@
+name: implementation_planning
+description: Create detailed implementation plan with dataset selection and architecture design
+version: 1.0.0
+dependencies: [04_idea_generation]
+
+inputs:
+  - type: file
+    path: inputs/selected_idea.json
+    description: Final selected research idea
+    source: "04_idea_generation/outputs/selected_idea.json"
+  - type: file
+    path: inputs/dataset_catalog.json
+    description: Available datasets for the research category
+
+outputs:
+  - type: file
+    path: outputs/implementation_plan.json
+    description: Detailed implementation plan with timelines and components
+  - type: file
+    path: outputs/dataset_selection.json
+    description: Selected datasets with download and preprocessing instructions
+  - type: file
+    path: outputs/architecture_design.json
+    description: Model architecture and component specifications
+
+environment:
+  python: "3.11"
+  packages:
+    - litellm==1.30.0
+    - pydantic==2.5.0
+
+resources:
+  cpu: 2
+  memory: 4Gi
+  timeout: 1800
+  api_calls: required
+
+metadata:
+  tags: ["planning", "architecture", "datasets"]
+  complexity: high
+  estimated_duration: "30-45 minutes"

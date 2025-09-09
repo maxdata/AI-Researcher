@@ -1,0 +1,49 @@
+name: experimental_analysis
+description: Run experiments, analyze results, and generate comprehensive reports
+version: 1.0.0
+dependencies: [07_code_evaluation]
+
+inputs:
+  - type: directory
+    path: inputs/refined_project/
+    description: Refined project implementation
+    source: "07_code_evaluation/outputs/refined_project/"
+  - type: file
+    path: inputs/evaluation_report.json
+    description: Code evaluation results
+    source: "07_code_evaluation/outputs/evaluation_report.json"
+
+outputs:
+  - type: file
+    path: outputs/experimental_results.json
+    description: Complete experimental results and metrics
+  - type: file
+    path: outputs/analysis_report.json
+    description: Statistical analysis and insights
+  - type: file
+    path: outputs/research_paper_draft.md
+    description: Auto-generated research paper draft
+  - type: directory
+    path: outputs/figures/
+    description: Generated plots and visualizations
+
+environment:
+  python: "3.11"
+  packages:
+    - matplotlib==3.7.2
+    - seaborn==0.12.2
+    - plotly==5.15.0
+    - scipy==1.11.1
+    - statsmodels==0.14.0
+
+resources:
+  cpu: 8
+  memory: 16Gi
+  timeout: 3600
+  gpu: optional
+  api_calls: required
+
+metadata:
+  tags: ["experiments", "analysis", "reporting"]
+  complexity: high
+  estimated_duration: "60-90 minutes"

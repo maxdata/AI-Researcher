@@ -1,0 +1,55 @@
+name: environment_setup
+description: Initialize Docker environment, validate dependencies, and configure research workspace
+version: 1.0.0
+dependencies: []
+
+inputs:
+  - type: file
+    path: inputs/config.json
+    description: Environment configuration including model settings, API keys, and workspace paths
+    required: true
+    schema:
+      type: object
+      properties:
+        base_image: {type: string, default: "tjbtech1/airesearcher:v1"}
+        completion_model: {type: string, default: "gpt-4o-2024-08-06"}
+        cheep_model: {type: string, default: "gpt-4o-mini"}
+        workspace_name: {type: string, default: "workplace"}
+        container_name: {type: string, default: "paper_eval"}
+        port: {type: integer, default: 12345}
+        gpu_config: {type: string, default: '"device=0"'}
+        category: {type: string, enum: ["vq", "gnn", "recommendation", "diffu_flow", "reasoning"]}
+        task_level: {type: string, enum: ["task1", "task2"], default: "task1"}
+        max_iter_times: {type: integer, default: 0}
+
+outputs:
+  - type: directory
+    path: outputs/workspace/
+    description: Initialized Docker workspace with mounted volumes
+  - type: file
+    path: outputs/environment_status.json
+    description: Environment validation results and container information
+  - type: file
+    path: outputs/docker_config.json
+    description: Docker configuration for subsequent steps
+
+environment:
+  python: "3.11"
+  packages:
+    - docker==6.1.3
+    - pydantic==2.5.0
+    - python-dotenv==1.0.0
+  system_requirements:
+    - docker
+    - nvidia-docker2  # if GPU support needed
+
+resources:
+  cpu: 2
+  memory: 4Gi
+  timeout: 300
+  gpu: optional
+
+metadata:
+  tags: ["setup", "docker", "environment"]
+  complexity: low
+  estimated_duration: "5 minutes"

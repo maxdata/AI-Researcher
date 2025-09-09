@@ -1,0 +1,20 @@
+Starting AI-Researcher Pipeline Execution
+Pipeline Directory: /Users/max/Documents/GitHub/AI-Researcher/steps
+Execution Time: Mon Sep  8 21:39:57 EDT 2025
+=========================================
+Validating prerequisites...
+✅ Prerequisites validated
+
+Executing Step 01_environment_setup: Environment Setup
+----------------------------------------
+[Mon Sep  8 21:39:57 EDT 2025] Starting environment setup...
+WARNING:__main__:No config file found, using defaults
+INFO:__main__:Starting environment validation...
+INFO:__main__:Docker is available: Docker version 28.3.2, build 578ccf6
+INFO:__main__:GPU support not available, using CPU only
+INFO:__main__:Checking for base image: tjbtech1/airesearcher:v1
+INFO:__main__:Pulling base image: tjbtech1/airesearcher:v1
+ERROR:__main__:Failed to pull image: Error response from daemon: pull access denied for tjbtech1/airesearcher, repository does not exist or may require 'docker login'
+
+ERROR:__main__:Environment setup failed: Failed to prepare base image
+❌ Step 01_environment_setup failed

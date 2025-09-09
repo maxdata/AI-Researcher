@@ -1,0 +1,50 @@
+name: repository_preparation
+description: Select and prepare reference codebases, download papers and source code
+version: 1.0.0
+dependencies: [02_paper_discovery]
+
+inputs:
+  - type: file
+    path: inputs/selection_criteria.json
+    description: Criteria for selecting repositories and papers
+  - type: file
+    path: inputs/paper_metadata.json
+    description: Paper metadata from discovery step
+    source: "02_paper_discovery/outputs/paper_metadata.json"
+  - type: file
+    path: inputs/github_repositories.json
+    description: GitHub repositories from discovery step
+    source: "02_paper_discovery/outputs/github_repositories.json"
+
+outputs:
+  - type: file
+    path: outputs/selected_repositories.json
+    description: Final selected repositories with download information
+  - type: file
+    path: outputs/selected_papers.json
+    description: Final selected papers with metadata
+  - type: directory
+    path: outputs/downloaded_repos/
+    description: Downloaded and prepared repository code
+  - type: directory
+    path: outputs/paper_sources/
+    description: Downloaded paper PDFs and LaTeX sources
+
+environment:
+  python: "3.11"
+  packages:
+    - GitPython==3.1.40
+    - requests==2.31.0
+    - arxiv==1.4.7
+    - PyPDF2==3.0.1
+
+resources:
+  cpu: 2
+  memory: 8Gi
+  timeout: 1800
+  disk: 10Gi
+
+metadata:
+  tags: ["preparation", "download", "selection"]
+  complexity: medium
+  estimated_duration: "20-30 minutes"

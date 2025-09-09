@@ -1,0 +1,15 @@
+{
+  "mode": "survey_based",
+  "category": "vq", 
+  "max_ideas": 3,
+  "selection_criteria": {
+    "novelty_weight": 0.4,
+    "feasibility_weight": 0.4,
+    "impact_weight": 0.2
+  },
+  "idea_constraints": {
+    "min_feasibility_score": 0.6,
+    "require_technical_approach": true,
+    "require_research_questions": true
+  }
+}

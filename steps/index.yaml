@@ -1,0 +1,92 @@
+name: ai_researcher_pipeline
+version: 1.0.0
+description: End-to-end AI research automation pipeline for scientific discovery and innovation
+author: AI-Researcher Team
+license: MIT
+
+steps:
+  - id: 01_environment_setup
+    name: environment_setup
+    description: Initialize Docker environment, validate dependencies, and configure research workspace
+    dependencies: []
+    
+  - id: 02_paper_discovery
+    name: paper_discovery
+    description: Search and collect papers from ArXiv and GitHub repositories based on research domain
+    dependencies: [01_environment_setup]
+    
+  - id: 03_repository_preparation
+    name: repository_preparation
+    description: Select and prepare reference codebases, download papers and source code
+    dependencies: [02_paper_discovery]
+    
+  - id: 04_idea_generation
+    name: idea_generation
+    description: Generate research ideas through survey analysis or implement provided ideas
+    dependencies: [03_repository_preparation]
+    
+  - id: 05_implementation_planning
+    name: implementation_planning
+    description: Create detailed implementation plan with dataset selection and architecture design
+    dependencies: [04_idea_generation]
+    
+  - id: 06_model_development
+    name: model_development
+    description: Implement ML models, training pipelines, and testing infrastructure
+    dependencies: [05_implementation_planning]
+    
+  - id: 07_code_evaluation
+    name: code_evaluation
+    description: Evaluate implementation quality, debug issues, and refine code
+    dependencies: [06_model_development]
+    
+  - id: 08_experimental_analysis
+    name: experimental_analysis
+    description: Run experiments, analyze results, and generate comprehensive reports
+    dependencies: [07_code_evaluation]
+
+execution:
+  parallel: false
+  max_workers: 1
+  on_failure: stop
+  timeout: 21600  # 6 hours total
+  
+global_config:
+  base_image: "tjbtech1/airesearcher:v1"
+  python_version: "3.11"
+  gpu_support: true
+  docker_required: true
+  
+supported_modes:
+  - name: "detailed_idea"
+    description: "Level 1: Implement a detailed research idea description"
+    entry_point: "01_environment_setup"
+    
+  - name: "reference_based"
+    description: "Level 2: Generate ideas from reference papers"
+    entry_point: "01_environment_setup"
+
+artifact_types:
+  - name: "research_workspace"
+    description: "Docker-based research environment"
+    
+  - name: "paper_collection"
+    description: "Curated research papers and metadata"
+    
+  - name: "codebase_repository"
+    description: "Selected and prepared reference code repositories"
+    
+  - name: "research_idea"
+    description: "Generated or provided research concept with technical details"
+    
+  - name: "implementation_plan"
+    description: "Detailed technical plan for model implementation"
+    
+  - name: "ml_project"
+    description: "Complete ML project with training and testing code"
+    
+  - name: "evaluation_report"
+    description: "Code quality and implementation assessment"
+    
+  - name: "experimental_results"
+    description: "Research findings, metrics, and analysis reports"

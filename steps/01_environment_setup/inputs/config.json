@@ -1,0 +1,12 @@
+{
+  "base_image": "tjbtech1/airesearcher:v1",
+  "completion_model": "gpt-4o-2024-08-06",
+  "cheep_model": "gpt-4o-mini",
+  "workspace_name": "workplace",
+  "container_name": "paper_eval",
+  "port": 12345,
+  "gpu_config": "\"device=0\"",
+  "category": "vq",
+  "task_level": "task1",
+  "max_iter_times": 0
+}

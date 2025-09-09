@@ -1,0 +1,19 @@
+{
+  "category": "vq",
+  "keywords": [
+    "vector quantization",
+    "discrete representation",
+    "VQ-VAE",
+    "quantized variational autoencoder"
+  ],
+  "arxiv_categories": [
+    "cs.LG",
+    "cs.AI",
+    "cs.CV",
+    "stat.ML"
+  ],
+  "date_limit": "2020-01-01",
+  "max_papers": 20,
+  "github_search_enabled": true,
+  "max_github_repos": 30
+}

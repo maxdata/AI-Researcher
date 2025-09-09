@@ -1,0 +1,63 @@
+name: paper_discovery
+description: Search and collect papers from ArXiv and GitHub repositories based on research domain
+version: 1.0.0
+dependencies: [01_environment_setup]
+
+inputs:
+  - type: file
+    path: inputs/search_config.json
+    description: Search configuration including keywords, categories, and filters
+    required: true
+    schema:
+      type: object
+      properties:
+        category: {type: string, enum: ["vq", "gnn", "recommendation", "diffu_flow", "reasoning"]}
+        keywords: {type: array, items: {type: string}}
+        arxiv_categories: {type: array, items: {type: string}}
+        date_limit: {type: string, format: date}
+        max_papers: {type: integer, default: 20}
+        github_search_enabled: {type: boolean, default: true}
+        max_github_repos: {type: integer, default: 50}
+        
+  - type: file
+    path: inputs/benchmark_instance.json
+    description: Optional benchmark instance with predefined papers (from AI-Researcher benchmark)
+    required: false
+
+outputs:
+  - type: file
+    path: outputs/paper_metadata.json
+    description: Collected paper metadata with abstracts, dates, and relevance scores
+  - type: file
+    path: outputs/github_repositories.json
+    description: GitHub repository search results with relevance rankings
+  - type: file
+    path: outputs/search_summary.json
+    description: Summary of search process and statistics
+  - type: directory
+    path: outputs/paper_cache/
+    description: Cached paper downloads and metadata
+
+environment:
+  python: "3.11"
+  packages:
+    - arxiv==1.4.7
+    - requests==2.31.0
+    - beautifulsoup4==4.12.2
+    - feedparser==6.0.10
+    - GitPython==3.1.40
+    - PyGithub==1.59.1
+    - tqdm==4.66.1
+  api_requirements:
+    - github_token  # Optional for higher rate limits
+
+resources:
+  cpu: 2
+  memory: 4Gi
+  timeout: 900  # 15 minutes
+  network: required
+
+metadata:
+  tags: ["discovery", "arxiv", "github", "search"]
+  complexity: medium
+  estimated_duration: "10-15 minutes"
